@@ -19,8 +19,19 @@ namespace WiredBrainCoffee.Pages
 
         public void OnPost()
         {
+            if (ModelState.IsValid())
+            {
+                EmailService.SendEmail(Contact);
+                Message = "Your Email has been sent";
+            }
+
+        }
+
+        public void OnPostSubscribe(string address)
+        {
             EmailService.SendEmail(Contact);
-            Message = "Your Email has been sent";
+            Message = "Your have been added to the mailing List.";
+
         }
     }
 }
